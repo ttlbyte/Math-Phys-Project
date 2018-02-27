@@ -14,9 +14,9 @@ int main()
     globalerror = 0;
     vt[0] = v0;
     xt[0] = x0;
-    dt = tmax / (M-1);
+    dt = tmax / M;
     halfdt = dt / 2;
-    for(;i< M-1;i++)
+    for(;i< M;i++)
     {
         ve[0] = -x0*sin(dt*i) + v0*cos(dt*i);
         xe[0] = x0*cos(dt*i) + v0*sin(dt*i);
