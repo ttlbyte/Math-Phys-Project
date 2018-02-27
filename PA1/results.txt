@@ -1,0 +1,26 @@
+The prog3.c is the standard method to determine the N for upper limit
+of input and then compute the results.
+
+the results are as follow:
+input               output
+0 1                 0.904524
+0 2                 0.461461
+0 4                 0.594460
+0 8                 0.683957
+0 16                0.595435
+0 32                0.624172
+
+
+The prog4.c is for the extra credit using the Simpson's rule. It determines the
+based on the given upper limit. The basic iteration number is reduced from 2333 to 230.
+
+the results are as follow:
+input               output
+0 1                 0.904524
+0 2                 0.461461
+0 4                 0.594460
+0 8                 0.683957
+0 16                0.595435
+0 32                0.624172
+
+Exactly the same as on the manual.
