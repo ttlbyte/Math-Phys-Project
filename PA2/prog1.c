@@ -34,8 +34,7 @@ int main()
     }
     xe = x0*cos(tmax) + v0*sin(tmax);
     ve = -x0*sin(tmax) + v0*cos(tmax);
-    globalerror += halfdt*(xt - xe)*(xt - xe);
-    globalerror = pow(globalerror/2,0.5);
+    globalerror = pow(globalerror/tmax,0.5);
 
     printf("\n for t = %lf, the numric xt = %lf, vt = %lf", dt*i, xt, vt);
     printf("\n for t = %lf, the exact xt = %lf, vt = %lf\n", dt*i, xe, ve);
