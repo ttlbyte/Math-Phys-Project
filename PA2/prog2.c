@@ -4,8 +4,6 @@
 int main()
 {
     FILE *fp;
-    fp = fopen("data.txt","w");
-    fprintf(fp,"    t         nR(t)          nF(t)\n");
     printf("\n Enter tmax and the step M:");
     double rho, tmax, M;
     scanf("%lf %lf", &tmax, &M);
@@ -43,7 +41,7 @@ int main()
                 if(k<1) strcat(filename,"fox_0.8.dat");
                 else strcat(filename,"fox_1.2.dat");
                 fp = fopen(filename,"w");
-                fprintf(fp,"   t     nR      nF\n");
+                fprintf(fp,"   t          nR        nF\n");
                 fprintf(fp,"%8.6lf  %8.6lf  %8.6lf\n",0.0,n[0],n[1]);
                 for(l=0; l<M; l++)
                 {
