@@ -19,7 +19,8 @@ for i in filename:
     ax.plot(data[0], data[2],'b', label=r'$n_F$')
     plt.xlabel(r'$\tau $')
     plt.ylabel('population density')
-    plt.title(i[:-4])
+    comment = r"$\rho = " + i[4:7] + r"\qquad n_R,0 = " + i[15:18] + r"\qquad n_F,0 = "+i[23:26] +r"$"
+    plt.title(comment)
     ax.legend()
     tmp = i[:-4]+'.png'
     fig.savefig(tmp)

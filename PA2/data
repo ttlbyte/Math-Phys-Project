@@ -1,8 +1,8 @@
 For simplicity I set omega = 1, intially x0=0, v0=10, tmax = 10. Following is the global error with respect to M;
 
 delta t         deltaX RMS
-1               35.408802
-0.1             0.166249
+1               21.245281
+0.1             0.330831
 0.01            0.001632
 0.001           0.000016
 
