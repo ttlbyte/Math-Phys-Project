@@ -11,7 +11,6 @@ int main()
     double dt, halfdt;
     dt = tmax / M;
     halfdt = dt / 2.0;
-    char *head="rho", *con="_";
     double j, k;
     double n[2]; //n[0] -- rabbit, n[1] -- fox
     double n1[2]; //for half dt
@@ -25,21 +24,7 @@ int main()
             {
                 n[1] = k;
                 char filename[100];
-                strcpy(filename,head);
-                switch(i)
-                {
-                    case(1):strcat(filename,"_0.2_");
-                            break;
-                    case(2):strcat(filename,"_0.4_");
-                            break;
-                    case(3):strcat(filename,"_0.6_");
-                            break;
-                    default:strcat(filename,"_0.8_");
-                }
-                if(j<1) strcat(filename,"rabbit_0.8_");
-                else strcat(filename,"rabbit_1.2_");
-                if(k<1) strcat(filename,"fox_0.8.dat");
-                else strcat(filename,"fox_1.2.dat");
+                sprintf(filename,"rho_%.1lf_rabbit_%.1lf_fox_%.1lf.dat", rho, j, k);
                 fp = fopen(filename,"w");
                 fprintf(fp,"   t          nR        nF\n");
                 fprintf(fp,"%8.6lf  %8.6lf  %8.6lf\n",0.0,n[0],n[1]);
@@ -52,6 +37,7 @@ int main()
                     fprintf(fp,"%8.6lf  %8.6lf  %8.6lf\n",l*dt+halfdt,n1[0],n1[1]);
                     fprintf(fp,"%8.6lf  %8.6lf  %8.6lf\n",(l+1)*dt,n[0],n[1]);
                 }
+                fclose(fp);
             }
         }
     }
