@@ -7,22 +7,21 @@ main()
 {
 	double *p, *l, *d, *u, *r, x, dx, xL, xR, pL, pR, phi, L;
     double D_zero;
-    double coeff, coeff_deriv;
+    double k;
 //	double exact(double, double, double);
 
 	int n, i;
 	int td_solve(double*, double*, double*, double*, double*, int);
 	FILE *fp;
 
-    double diff_coeff(double x, double L, double D_zero);
-    double diff_deriv(double x, double L, double D_zero);
-	printf("Enter D_zero, L, deriv_L, deriv_R: ");
-	scanf("%le %le %le %le",&D_zero, &L, &pL, &pR);
+	printf("Enter D_zero,k, L, p: ");
+	scanf("%le %le %le %le",&D_zero, &k, &L, &pL);
 
     xL=-L/2;
     xR=L/2;
 	printf("Enter N: ");
 	scanf("%d", &n);
+    pL = D_zero/(pL*L);
 
 	p = (double*)malloc(n*sizeof(double));
 	l = (double*)malloc(n*sizeof(double));
@@ -35,15 +34,18 @@ main()
 	for (i = 0; i <= n-1; i++) {
 
 		x =-L/2 + i*dx;
-        coeff = diff_coeff(x, L, D_zero);
-        coeff_deriv = diff_deriv(x, L, D_zero);
         r[i] = 0;
-        l[i] = coeff/(dx*dx) + coeff_deriv/(2*dx);
-        d[i] = -2*coeff/(dx*dx);
-        u[i] = coeff/(dx*dx) - coeff_deriv/(2*dx);
+        l[i] = 4*(x/dx)*(x/dx) - 4*x/dx;
+        d[i] = -8*(x/dx)*(x/dx) -k*L*L/D_zero;
+        u[i] = 4*(x/dx)*(x/dx) + 4*x/dx;
+
 	}
-    u[0] = 2;
-    l[n-1]=2;
+    u[0] += l[0];
+    d[0] -= -2*dx*l[0]/pL;
+    r[0] = -l[0]*2*dx/pL;
+    l[n-1] += u[n-1];
+    d[n-1] -= 2*dx*u[n-1]/pL;
+    r[n-1] = -u[n-1]*2*dx/pL;
 
     for (i=0; i<=n-1;i++){
     printf("l %le ,d %le ,u %le ,r %le\n",l[i], d[i],u[i],r[i]);
@@ -75,15 +77,6 @@ exact(double x, double phi, double L)
 }
 
 */
-double diff_coeff(double x, double L, double D_zero)
-{
-    return 4*D_zero*x*x/(L*L);
-}
-
-double diff_deriv(double x, double L, double D_zero)
-{
-    return 8*D_zero*x/(L*L);
-}
 
 
 int
