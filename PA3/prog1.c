@@ -11,8 +11,8 @@ main()
 	int td_solve(double*, double*, double*, double*, double*, int);
 	FILE *fp;
 
-	printf("Enter phi, L, deriv_L, deriv_R: ");
-	scanf("%le %le %le %le",&phi, &L, &pL, &pR);
+	printf("Enter phi, L: ");
+	scanf("%le %le",&phi, &L);
 
     xL=-L/2;
     xR=L/2;
@@ -35,10 +35,12 @@ main()
 		d[i] = -2.0 - dx * dx;
 		l[i] = u[i] = 1.0;
 	}
-    u[0] = 2;
-    l[n-1]=2;
-	r[0] += 2*dx*pL;
-	r[n-1] -= 2*dx*pR;
+    u[0] += 1;
+    l[n-1] += 1;
+    d[0]-=2*dx*phi;
+	r[0] = -2*dx*phi;
+    d[n-1] -= 2*dx*phi;
+	r[n-1] -= 2*dx*phi;
 
 
 	if (td_solve(l, d, u, r, p, n) != 0) {
@@ -46,7 +48,7 @@ main()
 		exit(2);
 	}
 
-	fp = fopen("2pt.out", "w");
+	fp = fopen("prog1.dat", "w");
 
 	for (i = 0; i < n; i++) {
 
