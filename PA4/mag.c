@@ -9,8 +9,9 @@ int main(int argc, char **argv)
         exit(2);
     }
     int N, i, j, seed;
-    sscanf(argv[1],"%d", &N);
     int **s;
+    double tot;
+    sscanf(argv[1],"%d", &N);
     s=(int **)malloc(N*sizeof(int *));
     for (i=0;i<N; i++)
         s[i] = (int *)malloc(N*sizeof(int *));
@@ -22,7 +23,6 @@ int main(int argc, char **argv)
                 s[i][j]=-1;
             else s[i][j]=1;
     double mag(int **, int);
-    double tot;
     tot = mag(s,N);
     printf("Average magnetic moment is %lf\n", tot);
     return 0;
